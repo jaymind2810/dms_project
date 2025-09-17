@@ -55,14 +55,10 @@ class DocumentUploadView(FormView):
     success_url = '/documents/'  # fallback
 
     def post(self, request, *args, **kwargs):
-        print(request, "-----request---------", request.POST)
         form = self.form_class(request.POST, request.FILES)
-        print(form, "-----form---------")
         if form.is_valid():
             doc = form.save(commit=False)
-            
             uploaded_file = form.cleaned_data['file']
-            print(uploaded_file, "-------asdasdasd")
             doc.name = uploaded_file
             doc.size = uploaded_file.size
             doc.content_type = getattr(uploaded_file, 'content_type', '')

@@ -45,6 +45,13 @@ pip install -r requirements.txt
 
 #
 
+### Import Database
+
+```bash
+mysql -u root -p dms_db < dms_db.sql
+```
+
+
 ### Running the App
 
 - for make migrations the App

@@ -50,11 +50,11 @@ WSGI_APPLICATION = 'dms_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dms_db',
-        'USER': 'root',
-        'PASSWORD': 'mysql',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv("DATABASE_NAME", "dms_db"),
+        'USER': os.getenv("DATABASE_USER", "root"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD", "mysql"),
+        'HOST': os.getenv("DATABASE_HOST", "localhost"),
+        'PORT': int(os.getenv("DATABASE_PORT", 3306)),
     }
 }
 

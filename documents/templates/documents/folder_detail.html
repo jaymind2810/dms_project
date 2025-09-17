@@ -2,7 +2,7 @@
 {% block content %}
 <h2>Documents{% if folder %} in {{ folder.get_path }} {% endif %}</h2>
 
-<div>
+<div style="text-align:center; margin-bottom: 20px;">
   <input id="new-folder-name" placeholder="New folder name" />
   <button id="create-folder-btn">Create Folder</button>
 </div>
@@ -20,8 +20,6 @@
   <input type="file" name="file" required />
   <input type="hidden" name="folder" value="{{ folder.id|default:'' }}">
   <button type="submit">Upload</button>
-  <br/>
-  {{ folder.id|default:'' }}
 </form>
 
 <table>
@@ -32,7 +30,7 @@
         <td><a href="{% url 'documents:download' doc.pk %}">Download</a></td>
       </tr>
     {% empty %}
-      <tr><td>No documents</td></tr>
+      <tr><td colspan="2">No documents</td></tr>
     {% endfor %}
   </tbody>
 </table>

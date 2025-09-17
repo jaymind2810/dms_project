@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Documents{% if folder %} in {{ folder.get_path }} {% endif %}</h2>
+
+<div>
+  <input id="new-folder-name" placeholder="New folder name" />
+  <button id="create-folder-btn">Create Folder</button>
+</div>
+
+<ul id="folder-list">
+  {% for child in children %}
+    <li><a href="{% url 'documents:folder-detail' child.pk %}">{{ child.name }}</a></li>
+  {% empty %}
+    <li>No folders</li>
+  {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'documents:upload' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="file" required />
+  <input type="hidden" name="folder" value="{{ folder.id|default:'' }}">
+  <button type="submit">Upload</button>
+  <br/>
+  {{ folder.id|default:'' }}
+</form>
+
+<table>
+  <tbody>
+    {% for doc in documents %}
+      <tr>
+        <td>{{ doc.name }}</td>
+        <td><a href="{% url 'documents:download' doc.pk %}">Download</a></td>
+      </tr>
+    {% empty %}
+      <tr><td>No documents</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+document.getElementById('create-folder-btn').addEventListener('click', function(){
+  const name = document.getElementById('new-folder-name').value.trim();
+  const parentId = "{{ folder.id|default:'' }}";
+  if(!name) { alert('Enter name'); return; }
+  fetch("{% url 'documents:ajax-create-folder' %}", {
+    method: "POST",
+    headers: {"X-CSRFToken": "{{ csrf_token }}","Content-Type":"application/x-www-form-urlencoded"},
+    body: new URLSearchParams({ name: name, parent: parentId })
+  }).then(r=>r.json()).then(data=>{
+    if(data.id){
+      const ul=document.getElementById('folder-list');
+      const li=document.createElement('li');
+      li.innerHTML='<a href="/docs/folder/'+data.id+'/">'+data.name+'</a>';
+      ul.appendChild(li);
+    } else { alert('Error'); }
+  });
+});
+</script>
+{% endblock %}

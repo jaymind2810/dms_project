@@ -1,0 +1,104 @@
+/* General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 960px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+header h1 {
+    color: #2c3e50;
+    font-size: 28px;
+}
+
+/* Section Titles */
+h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+/* Folder & File Controls */
+#new-folder-name {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Folder List */
+#folder-list {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+#folder-list li {
+    margin: 6px 0;
+}
+#folder-list a {
+    text-decoration: none;
+    color: #2c3e50;
+    font-weight: bold;
+}
+#folder-list a:hover {
+    color: #3498db;
+}
+
+/* File Upload Form */
+form {
+    margin: 20px 0;
+}
+input[type="file"] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Document Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+table tr:hover {
+    background-color: #f9f9f9;
+}
+table a {
+    color: #3498db;
+    text-decoration: none;
+}
+table a:hover {
+    text-decoration: underline;
+}

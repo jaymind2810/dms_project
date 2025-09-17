@@ -1,6 +1,6 @@
 <div align="center">
 
-# Ecommerce Website
+# Document Management Tool
 </div>
 
 ## Overview
@@ -42,6 +42,8 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
+- Create .env file and Add env.example variable data.
 
 #
 
